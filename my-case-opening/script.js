@@ -1,11 +1,9 @@
 const rewards = [
-    { name: "Pískový prach", rarity: "common", label: "Obyčejná", weight: 40 },
-    { name: "Noční čára", rarity: "common", label: "Obyčejná", weight: 30 },
-    { name: "Ledový úlomek", rarity: "rare", label: "Vzácná", weight: 15 },
-    { name: "Neonový puls", rarity: "rare", label: "Vzácná", weight: 7 },
-    { name: "Fantom", rarity: "epic", label: "Epická", weight: 5 },
-    { name: "Hvězdný poutník", rarity: "legendary", label: "Legendární", weight: 2.5 },
-    { name: "Tajný signál", rarity: "secret", label: "Tajná", weight: 0.5 },
+    { name: "Blue AK", rarity: "common", label: "common", chance: 60 },
+    { name: "Red AWP", rarity: "rare", label: "rare", chance: 25 },
+    { name: "Purple Knife", rarity: "epic", label: "epic", chance: 10 },
+    { name: "Golden Dragon", rarity: "legendary", label: "legendary", chance: 4 },
+    { name: "Secret Knife", rarity: "secret", label: "secret", chance: 1 },
 ];
 
 const openButton = document.querySelector("#openCase");
@@ -29,11 +27,10 @@ function loadInventory() {
 let items = loadInventory();
 
 function chooseReward() {
-    const totalWeight = rewards.reduce((total, reward) => total + reward.weight, 0);
-    let roll = Math.random() * totalWeight;
+    let roll = Math.random() * 100;
 
     for (const reward of rewards) {
-        roll -= reward.weight;
+        roll -= reward.chance;
         if (roll < 0) return reward;
     }
 
